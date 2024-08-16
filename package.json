@@ -1,0 +1,16 @@
+{
+  "name": "fusion-chain-nodejs",
+  "version": "1.0.0",
+  "description": "A modular implementation of Fusion Chain for NodeJS",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["fusion-chain", "llm", "ai"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5"
+  }
+}
