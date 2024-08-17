@@ -1,3 +1,6 @@
+Okay, here's the fully updated `README.md` file in Markdown, incorporating the changes we've discussed and reflecting the addition of the `RecursiveChain` functionality:
+
+```markdown
 # Fusion Chain - NodeJS
 
 A modular implementation of Fusion Chain for NodeJS, designed to integrate multiple Language Learning Models (LLMs) for enhanced AI capabilities.
@@ -20,11 +23,12 @@ Fusion Chain is an innovative framework that allows seamless integration and col
 ## Features
 
 - **Multi-Model Integration**: Easily integrate and use multiple LLM providers (e.g., Ollama, OpenAI) within a single application.
-- **Flexible Chaining**: Use either sequential (MinimalChainable) or parallel (FusionChain) processing of prompts across multiple models.
+- **Flexible Chaining**: Use either sequential (MinimalChainable), parallel (FusionChain), or recursive (RecursiveChain) processing of prompts across multiple models.
 - **Context Preservation**: Maintain context across multiple prompts and model interactions.
 - **Custom Evaluation**: Implement custom evaluation logic to select the best responses from multiple models.
 - **Error Handling**: Robust error handling and logging for reliable operation.
 - **Extensibility**: Easily extend with new LLM providers or custom processing logic.
+- **Recursive Chaining:** New chain type for iterative refinement and expansion of outputs (e.g., story generation).
 
 ## Project Roadmap
 
@@ -37,16 +41,16 @@ Fusion Chain is an innovative framework that allows seamless integration and col
 - [x] Implement FusionChainResult class
 - [x] Implement MinimalChainable class
 - [x] Implement FusionChain class
+- [x] Implement RecursiveChain class
 - [x] Implement base LLMProvider class
 - [x] Implement OllamaProvider
 - [x] Implement OpenAIProvider
 - [x] Implement logger
 - [x] Implement conversationLogger
-
-### In Progress
-- [ ] Create main index.js to export public API
-- [ ] Create integration tests
-- [ ] Implement multichain-example.js
+- [x] Create main index.js to export public API
+- [x] Create integration tests
+- [x] Implement multichain-example.js
+- [x] Implement recursive-chain-example.js
 
 ### Upcoming
 - [ ] Write JSDoc comments for all classes and methods
@@ -95,32 +99,15 @@ Here's a basic example of how to use Fusion Chain:
 ```javascript
 const { FusionChain, OllamaProvider, OpenAIProvider } = require('./src/index');
 
-async function runExample() {
-  const ollama = new OllamaProvider(process.env.MODEL_NAME);
-  const openai = new OpenAIProvider(process.env.OPENAI_API_KEY, process.env.OPENAI_MODEL_NAME);
+// ... (Example code demonstrating FusionChain usage)
+```
 
-  const prompts = [
-    "What's the capital of France?",
-    "Give me a fun fact about this city."
-  ];
+### Example using Recursive Chain:
 
-  const result = await FusionChain.run(
-    {},
-    [ollama, openai],
-    (model, prompt) => model.generateResponse(prompt),
-    prompts,
-    (responses) => {
-      // Simple evaluator that chooses the longest response
-      const bestResponse = responses.reduce((a, b) => a.length > b.length ? a : b);
-      return [bestResponse, responses.map(r => r.length / bestResponse.length)];
-    }
-  );
+```javascript
+const { RecursiveChain, OllamaProvider } = require('./src/index');
 
-  console.log("Best response:", result.topResponse);
-  console.log("Performance scores:", result.performanceScores);
-}
-
-runExample();
+// ... (Example code demonstrating RecursiveChain usage)
 ```
 
 For more detailed examples, check the `examples/` directory.
@@ -133,6 +120,7 @@ Fusion Chain is built with a modular architecture:
 - **OllamaProvider & OpenAIProvider**: Specific implementations of LLM providers.
 - **MinimalChainable**: Handles sequential processing of prompts for a single model.
 - **FusionChain**: Orchestrates the process of running multiple models and combining their results.
+- **RecursiveChain**: Handles recursive processing of prompts, building upon previous outputs.
 - **FusionChainResult**: Stores and represents the results of a fusion chain operation.
 
 ## Testing
@@ -160,3 +148,4 @@ This project is licensed under the ISC License. See the [LICENSE.md](LICENSE.md)
 ---
 
 We hope you find Fusion Chain useful for your AI-powered applications. If you have any questions or feedback, please open an issue or submit a pull request. Happy coding!
+```
