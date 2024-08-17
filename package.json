@@ -5,12 +5,27 @@
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "lint": "eslint \"src/**/*.js\" --fix",
+    "format": "prettier --write \"src/**/*.js\"",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
   },
-  "keywords": ["fusion-chain", "llm", "ai"],
+  "keywords": [
+    "fusion-chain",
+    "llm",
+    "ai"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "eslint": "^9.9.0",
+    "eslint-config-prettier": "^9.1.0",
+    "jest": "^29.7.0",
+    "prettier": "^3.3.3"
   }
 }
