@@ -34,11 +34,11 @@ A modular implementation of Fusion Chain for NodeJS, designed to integrate multi
   - [x] generateResponse method
 
 ### Utility Functions
-- [ ] Implement logger
-  - [ ] Log to file
-  - [ ] Log to console
-- [ ] Implement conversationLogger
-  - [ ] logConversation function
+- [x] Implement logger
+  - [x] Log to file
+  - [x] Log to console
+- [x] Implement conversationLogger
+  - [x] logConversation function
 
 ### Integration and Testing
 - [ ] Create main index.js to export public API
