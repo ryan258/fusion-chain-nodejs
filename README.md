@@ -8,29 +8,30 @@ A modular implementation of Fusion Chain for NodeJS, designed to integrate multi
 - [x] Create project structure
 - [x] Initialize package.json
 - [x] Set up .gitignore
-- [ ] Configure ESLint and Prettier for code consistency
-- [ ] Set up Jest for testing
+- [x] Configure ESLint and Prettier for code consistency
+  - Note: Simplified configuration due to compatibility issues with ESLint 9.x
+- [x] Set up Jest for testing
 
 ### Core Components
-- [ ] Implement FusionChainResult class
-  - [ ] Constructor
-  - [ ] toString method
-- [ ] Implement MinimalChainable class
-  - [ ] run method
-  - [ ] Private helper methods
-  - [ ] toDelimTextFile method
-- [ ] Implement FusionChain class
-  - [ ] run method
-  - [ ] runParallel method
+- [x] Implement FusionChainResult class
+  - [x] Constructor
+  - [x] toString method
+  - [x] getDetailedModelResponse method (additional functionality)
+- [x] Implement MinimalChainable class
+  - [x] run method
+  - [x] toDelimTextFile method
+- [x] Implement FusionChain class
+  - [x] run method
+  - [x] runParallel method
 
 ### LLM Providers
-- [ ] Implement base LLMProvider class
-- [ ] Implement OllamaProvider
-  - [ ] Constructor
-  - [ ] generateResponse method
-- [ ] Implement OpenAIProvider
-  - [ ] Constructor
-  - [ ] generateResponse method
+- [x] Implement base LLMProvider class
+- [x] Implement OllamaProvider
+  - [x] Constructor
+  - [x] generateResponse method
+- [x] Implement OpenAIProvider
+  - [x] Constructor
+  - [x] generateResponse method
 
 ### Utility Functions
 - [ ] Implement logger
@@ -63,6 +64,7 @@ A modular implementation of Fusion Chain for NodeJS, designed to integrate multi
 2. Run `npm install` to install dependencies
 3. Create a `.env` file with your API keys and configuration
 4. Run `npm start` to start the application
+5. Run `npm test` to run the tests
 
 ## Running Examples
 
@@ -96,6 +98,7 @@ fusion-chain-nodejs/
 ├── .env
 ├── .gitignore
 ├── package.json
+├── jest.config.js
 └── README.md
 ```
 
