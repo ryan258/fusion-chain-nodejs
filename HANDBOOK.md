@@ -2,20 +2,22 @@
 
 ## Table of Contents
 
-1. [Introduction](#introduction)
-2. [Basic Concepts](#basic-concepts)
-3. [Chain Types](#chain-types)
-   - [MinimalChainable](#minimalchainable)
-   - [FusionChain](#fusionchain)
-   - [RecursiveChain](#recursivechain)
-4. [LLM Providers](#llm-providers)
-   - [OllamaProvider](#ollamaprovider)
-   - [OpenAIProvider](#openaiprovider)
-5. [Building Chains](#building-chains)
-6. [Combining Chains](#combining-chains)
-7. [Use Cases](#use-cases)
-8. [Best Practices](#best-practices)
-9. [Troubleshooting](#troubleshooting)
+- [Fusion Chain Handbook: Building and Combining AI Chains](#fusion-chain-handbook-building-and-combining-ai-chains)
+  - [Table of Contents](#table-of-contents)
+  - [Introduction](#introduction)
+  - [Basic Concepts](#basic-concepts)
+  - [Chain Types](#chain-types)
+    - [MinimalChainable](#minimalchainable)
+    - [FusionChain](#fusionchain)
+    - [RecursiveChain](#recursivechain)
+  - [LLM Providers](#llm-providers)
+    - [OllamaProvider](#ollamaprovider)
+    - [OpenAIProvider](#openaiprovider)
+  - [Building Chains](#building-chains)
+  - [Combining Chains](#combining-chains)
+  - [Use Cases](#use-cases)
+  - [Best Practices](#best-practices)
+  - [Troubleshooting](#troubleshooting)
 
 ## Introduction
 
@@ -57,8 +59,8 @@ const FusionChain = require('./src/chain/FusionChain');
 const OllamaProvider = require('./src/llm-providers/OllamaProvider');
 const OpenAIProvider = require('./src/llm-providers/OpenAIProvider');
 
-const ollamaModel = new OllamaProvider('llama2');
-const openaiModel = new OpenAIProvider('your-api-key', 'gpt-3.5-turbo');
+const ollamaModel = new OllamaProvider('llama3.1:latest');
+const openaiModel = new OpenAIProvider('your-api-key', 'gpt-4o-mini');
 
 const context = { query: 'Explain quantum computing' };
 const prompts = ['{{query}}'];
@@ -104,7 +106,7 @@ OllamaProvider is used for interacting with locally hosted Ollama models.
 ```javascript
 const OllamaProvider = require('./src/llm-providers/OllamaProvider');
 
-const ollamaModel = new OllamaProvider('llama2');
+const ollamaModel = new OllamaProvider('llama3.1:latest');
 const response = await ollamaModel.generateResponse('Tell me a joke');
 ```
 
@@ -115,7 +117,7 @@ OpenAIProvider is used for interacting with OpenAI's API.
 ```javascript
 const OpenAIProvider = require('./src/llm-providers/OpenAIProvider');
 
-const openaiModel = new OpenAIProvider('your-api-key', 'gpt-3.5-turbo');
+const openaiModel = new OpenAIProvider('your-api-key', 'gpt-4o-mini');
 const response = await openaiModel.generateResponse('Explain the theory of relativity');
 ```
 
