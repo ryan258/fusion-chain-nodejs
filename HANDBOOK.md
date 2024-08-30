@@ -178,4 +178,4 @@ const [finalOutput] = await recursiveChain.run({ summary: summaries[0] }, model,
 - Use logging to track the flow of data through your chains.
 - Test each component of your chain individually before combining them.
 
-Remember, the key to successful chain building is experimentation and iteration. Don't be afraid to try different combinations and configurations to find what works best for your specific use case.
+Remember, the key to successful chain building is experimentation and iteration. Don't be afraid to try different combinations and configurations to find what works best for your specific use case.Movie that baby

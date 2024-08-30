@@ -1,20 +1,22 @@
-Okay, here's the fully updated `README.md` file in Markdown, incorporating the changes we've discussed and reflecting the addition of the `RecursiveChain` functionality:
-
-```markdown
 # Fusion Chain - NodeJS
 
 A modular implementation of Fusion Chain for NodeJS, designed to integrate multiple Language Learning Models (LLMs) for enhanced AI capabilities.
 
 ## Table of Contents
-1. [Project Overview](#project-overview)
-2. [Features](#features)
-3. [Project Roadmap](#project-roadmap)
-4. [Installation](#installation)
-5. [Usage](#usage)
-6. [Architecture](#architecture)
-7. [Testing](#testing)
-8. [Contributing](#contributing)
-9. [License](#license)
+- [Fusion Chain - NodeJS](#fusion-chain---nodejs)
+  - [Table of Contents](#table-of-contents)
+  - [Project Overview](#project-overview)
+  - [Features](#features)
+  - [Project Roadmap](#project-roadmap)
+    - [Completed](#completed)
+    - [Upcoming](#upcoming)
+  - [Installation](#installation)
+  - [Usage](#usage)
+    - [Example using Recursive Chain:](#example-using-recursive-chain)
+  - [Architecture](#architecture)
+  - [Testing](#testing)
+  - [Contributing](#contributing)
+  - [License](#license)
 
 ## Project Overview
 
@@ -148,4 +150,3 @@ This project is licensed under the ISC License. See the [LICENSE.md](LICENSE.md)
 ---
 
 We hope you find Fusion Chain useful for your AI-powered applications. If you have any questions or feedback, please open an issue or submit a pull request. Happy coding!
-```
