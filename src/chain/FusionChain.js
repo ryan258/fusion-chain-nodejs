@@ -1,109 +1,90 @@
 // src/chain/FusionChain.js
 
-// First, we're bringing in some helper tools we've made before.
-// It's like getting our coloring pencils and paper ready before we start drawing.
+// 📚 We're bringing in some helper tools we made earlier
 const FusionChainResult = require('./FusionChainResult');
 const MinimalChainable = require('./MinimalChainable');
 
-// This is our FusionChain class. Think of it as a big robot that can talk to many smaller robots.
+// 🤖 This is our FusionChain class. It's like a super smart robot that can talk to many AI friends at once!
 class FusionChain {
-  // This is a special function that can talk to many robot friends one by one.
-  // It's like asking each of your friends a question, one after another.
+  // 🏃‍♂️ This is our main "run" function. It's like starting a race with all our AI friends!
   static async run(context, models, callable, prompts, evaluator, getModelName = (model) => model.toString()) {
-    // We're making two empty boxes to put our answers and questions in.
+    // 📦 We're creating some empty boxes to store our results
     const allOutputs = [];
     const allContextFilledPrompts = [];
-
-    // We're making a special notebook to write down what we learn.
+    // 🧠 This is like a special notebook where we write down what we learn
     const runContext = { ...context, previousAnswers: [] };
 
-    // We're going to talk to each of our robot friends one by one.
+    // 🔁 We're going to talk to each of our AI friends one by one
     for (const model of models) {
       try {
-        // We're using our MinimalChainable tool to talk to each robot friend.
-        // It's like having a special telephone to call each friend.
-        const [outputs, contextFilledPrompts] = await MinimalChainable.run(runContext, model, callable, prompts);
+        // 📞 We're using our special phone (MinimalChainable) to call each AI friend
+        const [outputs, contextFilledPrompts] = await MinimalChainable.run(runContext, model, async (model, prompt) => {
+          return await callable(model, prompt, runContext);
+        }, prompts);
         
-        // We're putting the answers and questions in our boxes.
+        // 📥 We're putting the answers in our result boxes
         allOutputs.push(outputs);
         allContextFilledPrompts.push(contextFilledPrompts);
-        
-        // We're writing down what we learned in our special notebook.
+        // ✏️ We're writing down what we learned in our special notebook
         runContext.previousAnswers.push(...outputs);
       } catch (error) {
-        // Oops! Something went wrong when talking to this robot friend.
-        // We're going to tell everyone about it.
+        // 🚨 Oops! Something went wrong when talking to this AI friend
         console.error(`Error processing model ${model.constructor.name}:`, error);
-        
-        // We're also going to stop everything if something goes wrong.
-        // It's like stopping a game if someone gets hurt.
         throw error;
       }
     }
 
-    // We're looking at the last answer from each robot friend.
+    // 🏅 We're picking the best answer from all our AI friends
     const lastOutputs = allOutputs.map(outputs => outputs[outputs.length - 1]);
-    
-    // We're using our special judge (evaluator) to pick the best answer.
     const [topResponse, performanceScores] = evaluator(lastOutputs);
-
-    // We're giving each robot friend a name tag.
+    // 🏷️ We're giving each AI friend a name tag
     const modelNames = models.map(getModelName);
 
-    // We're putting all our results in a special box to give back.
+    // 🎁 We're wrapping up all our results in a nice package
     return new FusionChainResult(topResponse, allOutputs, allContextFilledPrompts, performanceScores, modelNames);
   }
 
-  // This is another special function that can talk to all our robot friends at the same time!
-  // It's like asking all your friends a question at once in a big group.
+  // 🚀 This is our "runParallel" function. It's like having a big party where all our AI friends talk at once!
   static async runParallel(context, models, callable, prompts, evaluator, getModelName = (model) => model.toString()) {
-    // We're making our special notebook again.
+    // 🧠 We're setting up our special notebook again
     const runContext = { ...context, previousAnswers: [] };
 
-    // We're asking all our robot friends the question at the same time.
-    // It's like shouting a question to a group of friends.
+    // 🎉 We're inviting all our AI friends to the party at the same time
     const modelPromises = models.map(model => 
-      MinimalChainable.run(runContext, model, callable, prompts)
+      MinimalChainable.run(runContext, model, async (model, prompt) => {
+        return await callable(model, prompt, runContext);
+      }, prompts)
         .catch(error => {
-          // Oops! Something went wrong when talking to this robot friend.
-          // We're going to tell everyone about it.
+          // 🚨 Oops! This AI friend had a problem
           console.error(`Error processing model ${model.constructor.name}:`, error);
-          
-          // We're also going to stop everything if something goes wrong.
           throw error;
         })
     );
     
     try {
-      // We're waiting for all our friends to answer.
+      // ⏳ We're waiting for all our AI friends to finish talking
       const results = await Promise.all(modelPromises);
       
-      // We're sorting all the answers and questions into our boxes.
+      // 📦 We're organizing all the answers we got
       const allOutputs = results.map(result => result[0]);
       const allContextFilledPrompts = results.map(result => result[1]);
       
-      // We're looking at the last answer from each friend.
+      // 🏅 We're picking the best answer from the party
       const lastOutputs = allOutputs.map(outputs => outputs[outputs.length - 1]);
-      
-      // We're using our special judge (evaluator) to pick the best answer.
       const [topResponse, performanceScores] = evaluator(lastOutputs);
       
-      // We're giving each robot friend a name tag.
+      // 🏷️ We're giving each AI friend a name tag
       const modelNames = models.map(getModelName);
       
-      // We're putting all our results in a special box to give back.
+      // 🎁 We're wrapping up all our party results in a nice package
       return new FusionChainResult(topResponse, allOutputs, allContextFilledPrompts, performanceScores, modelNames);
     } catch (error) {
-      // Oops! Something went wrong when talking to our friends.
-      // We're going to tell everyone about it.
+      // 🚨 Oh no! Something went wrong at our AI party
       console.error("Error in runParallel:", error);
-      
-      // We're also going to stop everything if something goes wrong.
       throw error;
     }
   }
 }
 
-// We're making our FusionChain available for others to use.
-// It's like sharing our cool robot with friends!
+// 🚪 We're making our FusionChain available for others to use
 module.exports = FusionChain;
