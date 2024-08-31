@@ -21,7 +21,7 @@ async function runMinimalChainableOpenAIExample() {
 
   // 🧠 Set up our initial context (like giving our AI some background info)
   const initialContext = {
-    topic: 'existential risks of artificial intelligence',
+    topic: 'existential crisis of artificial intelligence',
     tone: 'mysteriously suspenseful',
     conversation: [], // 🗨️ This will store our ongoing conversation
   };
