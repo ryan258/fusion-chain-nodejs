@@ -20,8 +20,8 @@ async function runFusionChainExample() {
 
   // We're creating our robot friends. We use our secret ingredients to make them.
   // It's like giving each robot a special name tag.
-  const ollama = new OllamaProvider(process.env.OLLAMA_MODEL_NAME || 'llama2');
-  const openai = new OpenAIProvider(process.env.OPENAI_API_KEY, process.env.OPENAI_MODEL_NAME || 'gpt-3.5-turbo');
+  const ollama = new OllamaProvider(process.env.OLLAMA_MODEL_NAME || 'llama3.1:latest');
+  const openai = new OpenAIProvider(process.env.OPENAI_API_KEY, process.env.OPENAI_MODEL_NAME || 'gpt-4o-mini');
 
   // These are the questions we want to ask our robot friends.
   // It's like writing down our questions on a piece of paper.
